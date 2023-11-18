@@ -1,0 +1,6 @@
+{
+    "board": "Seeeduino:avr:nano",
+    "sketch": "seeeduino_christmas_wreath.ino",
+    "output": "../build/seeeuino_christmas_wreath",
+    "port": "COM5"
+}
