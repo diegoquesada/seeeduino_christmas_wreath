@@ -6,19 +6,17 @@
 
 #include <time.h>
 #include <Wire.h>
-#include <Digital_Light_TSL2561.h>
-#include <Adafruit_NeoPixel.h>
+//#include <Digital_Light_TSL2561.h>
 //#include <MsTimer2.h>
 //#include <avr/sleep.h>
+#include "pins.h"
 #include "melodies.h"
 #include "animation.h"
 
-#define PIXELSPIN A5 //SCL on the Grove connector
-#define SPEAKERPIN A3
-
 //const uint16_t hallPin = 4;
-Adafruit_NeoPixel pixels(30, PIXELSPIN, NEO_GRB + NEO_KHZ800);
 //const unsigned long SLEEP_INTERVAL = 10000; // 10 seconds
+
+#define ENABLE_SOUNDS 0
 
 void wakeup_interrupt_handler();
 
@@ -28,19 +26,22 @@ void setup()
   Serial.begin(9600);
 
     pinMode(SPEAKERPIN, OUTPUT);
+
+#if ENABLE_SOUNDS==1
     digitalWrite(SPEAKERPIN, LOW);
+#endif
 //  pinMode(hallPin, INPUT);
 
 /*   Wire.begin();
   TSL2561.init(); */
 
-  pixels.begin();
-
   animationInit();
   animationStart();
 
+#if ENABLE_SOUNDS==1
   melodyInit();
   melodyStart();
+#endif
 
   //MsTimer2::stop();
 }
@@ -49,6 +50,11 @@ void loop()
 {
   animationNext();
   animationStep();
+
+#if ENABLE_SOUNDS==1
+  melodyNext();
+  melodyStep();
+#endif
 
 //  else
 //  {
