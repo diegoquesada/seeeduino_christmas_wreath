@@ -5,18 +5,21 @@
  */
 
 #include <time.h>
+#include "config.h"
+#if ENABLE_LIGHTSENSOR==1
 #include <Wire.h>
-//#include <Digital_Light_TSL2561.h>
+#include <Digital_Light_TSL2561.h>
+#endif
+#if ENABLE_SOUNDS==1
+#include "melodies.h"
+#endif
 //#include <MsTimer2.h>
 //#include <avr/sleep.h>
 #include "pins.h"
-#include "melodies.h"
 #include "animation.h"
 
 //const uint16_t hallPin = 4;
 //const unsigned long SLEEP_INTERVAL = 10000; // 10 seconds
-
-#define ENABLE_SOUNDS 0
 
 void wakeup_interrupt_handler();
 
@@ -25,10 +28,10 @@ void setup()
 {
   Serial.begin(9600);
 
-    pinMode(SPEAKERPIN, OUTPUT);
+  pinMode(SPEAKERPIN, OUTPUT);
 
 #if ENABLE_SOUNDS==1
-    digitalWrite(SPEAKERPIN, LOW);
+  digitalWrite(SPEAKERPIN, LOW);
 #endif
 //  pinMode(hallPin, INPUT);
 

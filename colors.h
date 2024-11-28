@@ -21,3 +21,5 @@ const Color_t YELLOW75 = { 0xC0, 0xC0, 0 };
 const Color_t YELLOW50 = { 0x80, 0x80, 0 };
 const Color_t YELLOW25 = { 0x40, 0x40, 0 };
 const Color_t WHITE = { 0xFF, 0xFF, 0xFF };
+
+constexpr Color_t RGBtoColor(uint32_t rgb) { return { (rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF }; }
