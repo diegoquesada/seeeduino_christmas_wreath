@@ -26,7 +26,7 @@ void wakeup_interrupt_handler();
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   pinMode(SPEAKERPIN, OUTPUT);
 
